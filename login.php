@@ -1,4 +1,32 @@
 <?php
+
+require 'conection.php';
+
+if (isset($_POST["login"])) {
+
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+
+  $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
+
+  if (mysqli_num_rows($result) === 1) {
+
+    $row = mysqli_fetch_assoc($result);
+
+    if (password_verify($password, $row["password"])) {
+      header("location: dasboard.html");
+      exit;
+    } else {
+      echo "<script>
+        alert( 'password salah');
+        </script>";
+    }
+  }
+}
+
+?>
+
+<?php
 // koneksi ke database
 mysqli_connect("localhost", "root", "", "tiketkereta");
 ?>
@@ -13,7 +41,7 @@ mysqli_connect("localhost", "root", "", "tiketkereta");
 </head>
 
 <body>
-  <form action="login_controller.php" method="post" class="input-group">
+  <form action="" method="post" class="input-group">
     <div class="title">
       <b class="front">Tiket </b><b class="back">Kereta</b>
     </div>
@@ -25,11 +53,11 @@ mysqli_connect("localhost", "root", "", "tiketkereta");
       <input type="password" name="password" required>
       <span data-placeholder="Password"></span>
     </div>
-    <a class="nav-link" href="dasboard.html"><button type="button" class="btn btn-warning">Masuk</button></a>
+    <button type="submit" class="btn btn-warning" name="login">Masuk</button>
 
     <p style="margin-top: 200px;">
-            <small>Belum mempunyai akun? login <a href="register.php">di sini</a></small>
-        </p>
+      <small>Belum mempunyai akun? register <a href="register.php">di sini</a></small>
+    </p>
   </form>
 
   <script type="text/javascript">

@@ -44,7 +44,7 @@ if (isset($_POST["daftar"])) {
         <button type="submit" name="daftar">Daftar</button>
 
         <p style="margin-top: 129px;">
-            <small>Sudah mempunyai akun? login <a href="login.html">di sini</a></small>
+            <small>Sudah mempunyai akun? login <a href="login.php">di sini</a></small>
         </p>
     </form>
 

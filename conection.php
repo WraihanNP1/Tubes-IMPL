@@ -17,6 +17,7 @@ function query($query)
 function daftar($data)
 {
     global $conn;
+    
 
     $email = strtolower(stripslashes($data["email"]));
     $password = mysqli_real_escape_string($conn, $data["password"]);
