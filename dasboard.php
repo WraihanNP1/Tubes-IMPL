@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["login"]) ) {
+    header("location: login.php");
+    exit;
+}
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,20 +34,20 @@
                     </a>
                 </li>
                 <li>
-                    <a href="jadwalkereta.html">
+                    <a href="jadwalkereta.php">
                         <i class="fa-solid fa-calendar-days"></i>
                         <span>Jadwal Kereta</span>
                     </a>
                 </li>
                 <li>
-                    <a href="PemesananKeretaApi.html">
+                    <a href="PemesananKeretaApi.php">
                         <i class="fa-solid fa-ticket"></i>
                         <span>Pesan Tiket</span>
                     </a>
                 </li>
                 </li>
                 <li>
-                    <a href="about.html">
+                    <a href="about.php">
                         <i class="fa-solid fa-list-check"></i>
                         <span>About</span>
                     </a>
