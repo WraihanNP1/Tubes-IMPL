@@ -3,7 +3,7 @@ body {
     background-color: #f2f2f2;
     background-image: url('');
     background-size: cover;
-    background-position: center center center;
+    background-position: center center ;
 }
 
 h1 {
@@ -31,7 +31,7 @@ input,
 select,
 button {
     width: 100%;
-    padding: 10px 15px;
+    padding: 10px 15px ;
     box-sizing: border-box;
     margin-bottom: 16px;
     border: none;
