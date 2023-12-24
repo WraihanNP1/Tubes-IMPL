@@ -77,7 +77,7 @@ if( !isset($_SESSION["login"]) ) {
                         <h1 class="text-center text-warning">Kereta Api Explore</h1>
                         <p class="text-center text-white">Platform pemesanan tiket online kereta api</p>
                         <p class="text-center text-white">“E-Tiket Kereta Api Explore”</p>
-                        <a class="nav-link" href="PemesananKeretaApi.html"><button type="button"
+                        <a class="nav-link" href="PemesananKeretaApi.php"><button type="button"
                                 class="btn btn-warning">Pesan
                                 Sekarang!</button></a>
 
