@@ -49,7 +49,6 @@ if( !isset($_SESSION["login"]) ) {
     <h1>Pemesanan Tiket Kereta Api</h1>
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Proses data formulir
         $nama = $_POST["nama"];
         $stasiun_keberangkatan = $_POST["stasiun_keberangkatan"];
         $stasiun_tujuan = $_POST["stasiun_tujuan"];
@@ -59,12 +58,8 @@ if( !isset($_SESSION["login"]) ) {
         $jumlah_tiket = $_POST["jumlah_tiket"];
         $total_harga = $_POST["Total_Harga"];
 
-        // Generate nomor resi (Anda dapat mengganti dengan logika sendiri)
         $nomor_resi = "RSI" . rand(1000, 9999);
 
-        // Simpan atau kirim email resi, atau siapkan data untuk dicetak
-
-        // Contoh: Anggap pembayaran berhasil
         $pembayaran_berhasil = true;
 
         if ($pembayaran_berhasil) {
@@ -86,7 +81,6 @@ if( !isset($_SESSION["login"]) ) {
     }
     ?>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF"]); ?>">
-        <!-- Formulir pemesanan tiket di sini -->
     </form>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path fill="blue" fill-opacity="1"
