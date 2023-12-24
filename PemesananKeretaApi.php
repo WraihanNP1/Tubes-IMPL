@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="submit" name="submit" value="Pesan Tiket">
         <input type="reset" value="Reset">
-        <input type="button" onclick="window.location.href='dasboard.html'" value="Menu Utama">
+        <input type="button" onclick="window.location.href='dasboard.php'" value="Menu Utama">
 
 
     </form>
@@ -260,5 +260,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </body>
-
 </html>
