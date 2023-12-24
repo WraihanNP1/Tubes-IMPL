@@ -37,6 +37,11 @@ button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+input[type="submit"],
+input[type="reset"],
+button[type="button"] {
     background-color: #4CAF50;
     color: white;
 }

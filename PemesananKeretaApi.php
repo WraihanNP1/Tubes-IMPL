@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-if( !isset($_SESSION["login"]) ) {
+if (!isset($_SESSION["login"])) {
     header("location: login.php");
     exit;
 }
+
 $conn = mysqli_connect("localhost", "root", "", "tiketkereta");
 
 $errors = [];
@@ -17,12 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $kelas = isset($_POST["kelas"]) ? $_POST["kelas"] : null;
     $kereta = isset($_POST["kereta"]) ? $_POST["kereta"] : null;
     $tanggal_keberangkatan = isset($_POST["tanggal_keberangkatan"]) ? $_POST["tanggal_keberangkatan"] : null;
+    $jam_keberangkatan = isset($_POST["jam_keberangkatan"]) ? $_POST["jam_keberangkatan"] : null;
+    $jam_tiba = isset($_POST["jam_tiba"]) ? $_POST["jam_tiba"] : null;
     $jumlah_tiket = isset($_POST["jumlah_tiket"]) ? $_POST["jumlah_tiket"] : null;
     $total_harga = isset($_POST["total_harga"]) ? $_POST["total_harga"] : null;
-
-    if (!is_numeric($id) || $id <= 0) {
-        $errors[] = "ID harus berupa angka dan lebih dari 0.";
-    }
 
     if (empty($nama)) {
         $errors[] = "Nama tidak boleh kosong.";
@@ -45,8 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
-        // Add logic to calculate harga based on kelas and kereta
         $hargaPerTiket = 0;
+        $jamDatang = '';
+        $jamTiba = '';
 
         switch ($kelas) {
             case "Ekonomi":
@@ -63,35 +63,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         switch ($kereta) {
             case "Argo Wilis":
                 $hargaPerTiket += 350000;
+                $jamDatang = '06:30';
+                $jamTiba = '12:30';
                 break;
             case "Argo Bromo Anggrek":
                 $hargaPerTiket += 400000;
+                $jamDatang = '07:00';
+                $jamTiba = '14:00';
                 break;
             case "Malabar":
                 $hargaPerTiket += 250000;
+                $jamDatang = '09:45';
+                $jamTiba = '16:30';
                 break;
             case "Taksaka":
                 $hargaPerTiket += 500000;
+                $jamDatang = '08:00';
+                $jamTiba = '15:00';
                 break;
             case "Bima":
                 $hargaPerTiket += 450000;
+                $jamDatang = '10:30';
+                $jamTiba = '17:30';
                 break;
             case "Turangga":
                 $hargaPerTiket += 350000;
+                $jamDatang = '12:15';
+                $jamTiba = '19:00';
                 break;
             case "Gajayana":
                 $hargaPerTiket += 380000;
+                $jamDatang = '14:00';
+                $jamTiba = '21:00';
                 break;
             case "Argo Lawu":
                 $hargaPerTiket += 600000;
+                $jamDatang = '16:45';
+                $jamTiba = '23:30';
                 break;
         }
-
         $total_harga = $hargaPerTiket * $jumlah_tiket;
 
-        $insertQuery = "INSERT INTO pemesanankereta (id, nama, stasiun_keberangkatan, stasiun_tujuan, kelas, kereta, tanggal_keberangkatan, jumlah_tiket, total_harga) VALUES ('$id','$nama', '$stasiun_keberangkatan', '$stasiun_tujuan', '$kelas', '$kereta', '$tanggal_keberangkatan', '$jumlah_tiket', '$total_harga')";
+        $insertQuery = "INSERT INTO pesankereta (id, nama, stasiun_keberangkatan, stasiun_tujuan, kelas, kereta, tanggal_keberangkatan, jam_keberangkatan, jam_kedatangan, jumlah_tiket, total_harga) VALUES ('id', '$nama', '$stasiun_keberangkatan', '$stasiun_tujuan', '$kelas', '$kereta', '$tanggal_keberangkatan', '$jam_keberangkatan', '$jamTiba', '$jumlah_tiket', '$total_harga')";
+        $result = mysqli_query($conn, $insertQuery);
 
-        if (mysqli_query($conn, $insertQuery)) {
+        if ($result) {
             echo "";
         } else {
             echo "" . mysqli_error($conn);
@@ -102,9 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -165,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
 
         <label for="kereta">Kereta:</label>
-        <select id="kereta" name="kereta" required>
+        <select id="kereta" name="kereta" required onchange="updateJam()">
             <option value="Argo Wilis">Argo Wilis</option>
             <option value="Argo Bromo Anggrek">Argo Bromo Anggrek</option>
             <option value="Malabar">Malabar</option>
@@ -179,6 +193,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="tanggal_keberangkatan">Tanggal Keberangkatan:</label>
         <input type="date" name="tanggal_keberangkatan" required>
 
+        <label for="jam_keberangkatan">Jam Keberangkatan:</label>
+        <input type="time" name="jam_keberangkatan" id="jam_keberangkatan" required>
+
+        <label for="jam_kedatangan">Jam Kedatangan:</label>
+        <input type="time" name="jam_kedatangan" id="jam_kedatangan" required>
+
         <label for="jumlah_tiket">Jumlah Tiket:</label>
         <input type="number" id="jumlah_tiket" name="jumlah_tiket" min="1" required>
 
@@ -188,23 +208,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" name="submit" value="Pesan Tiket">
         <input type="reset" value="Reset">
         <input type="button" onclick="window.location.href='dasboard.html'" value="Menu Utama">
-
-
     </form>
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="blue" fill-opacity="1"
-            d="M0,32L80,64C160,96,320,160,480,160C640,160,800,96,960,74.7C1120,53,1280,75,1360,85.3L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-        </path>
-    </svg>
-
-    <footer class="bg-primary text-white text-center pb-2">
-        <p>Created By <a href="" class="text-white fw-bold" style="color: red;">Kelompok 2 IPL</a></p>
-    </footer>
 
     <script>
         document.getElementById("kelas").addEventListener("change", updateTotalHarga);
-        document.getElementById("kereta").addEventListener("change", updateTotalHarga);
+        document.getElementById("kereta").addEventListener("change", updateJam);
         document.getElementById("jumlah_tiket").addEventListener("input", updateTotalHarga);
 
         function updateTotalHarga() {
@@ -216,47 +224,90 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             switch (kelas) {
                 case "Ekonomi":
-                    hargaPerTiket += 50000; 
+                    hargaPerTiket += 50000;
                     break;
                 case "Bisnis":
-                    hargaPerTiket += 100000; 
+                    hargaPerTiket += 100000;
                     break;
                 case "Eksekutif":
-                    hargaPerTiket += 150000; 
+                    hargaPerTiket += 150000;
                     break;
             }
 
             switch (kereta) {
                 case "Argo Wilis":
-                    hargaPerTiket += 20000; 
+                    hargaPerTiket += 20000;
                     break;
                 case "Argo Bromo Anggrek":
-                    hargaPerTiket += 30000; 
+                    hargaPerTiket += 30000;
                     break;
                 case "Malabar":
-                    hargaPerTiket += 25000; 
+                    hargaPerTiket += 25000;
                     break;
                 case "Taksaka":
-                    hargaPerTiket += 35000; 
+                    hargaPerTiket += 35000;
                     break;
                 case "Bima":
-                    hargaPerTiket += 40000; 
+                    hargaPerTiket += 40000;
                     break;
                 case "Turangga":
-                    hargaPerTiket += 45000; 
+                    hargaPerTiket += 45000;
                     break;
                 case "Gajayana":
-                    hargaPerTiket += 50000; 
+                    hargaPerTiket += 50000;
                     break;
                 case "Argo Lawu":
-                    hargaPerTiket += 55000; 
+                    hargaPerTiket += 55000;
                     break;
             }
-
-            // Calculate total harga
             var total_harga = hargaPerTiket * jumlah_tiket;
 
             document.getElementById("total_harga").value = total_harga.toFixed(2);
+        }
+
+        function updateJam() {
+            var kereta = document.getElementById("kereta").value;
+            var jamKeberangkatan = "";
+            var jamTiba = "";
+
+            switch (kereta) {
+                case "Argo Wilis":
+                    jamKeberangkatan = "06:30";
+                    jamTiba = "12:30";
+                    break;
+                case "Argo Bromo Anggrek":
+                    jamKeberangkatan = "07:00";
+                    jamTiba = "14:00";
+                    break;
+                case "Malabar":
+                    jamKeberangkatan = "09:45";
+                    jamTiba = "16:30";
+                    break;
+                case "Taksaka":
+                    jamKeberangkatan = "08:00";
+                    jamTiba = "15:00";
+                    break;
+                case "Bima":
+                    jamKeberangkatan = "10:30";
+                    jamTiba = "17:30";
+                    break;
+                case "Turangga":
+                    jamKeberangkatan = "12:15";
+                    jamTiba = "19:00";
+                    break;
+                case "Gajayana":
+                    jamKeberangkatan = "14:00";
+                    jamTiba = "21:00";
+                    break;
+                case "Argo Lawu":
+                    jamKeberangkatan = "16:45";
+                    jamTiba = "23:30";
+                    break;
+            }
+
+            document.getElementById("jam_keberangkatan").value = jamKeberangkatan;
+            document.getElementById("jam_kedatangan").value = jamTiba;
+
         }
     </script>
 </body>
