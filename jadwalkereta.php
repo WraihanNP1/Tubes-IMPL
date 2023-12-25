@@ -88,81 +88,81 @@ if (!isset($_SESSION["login"])) {
         <td>1</td>
                 <td>Jakarta - Surabaya</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>08:00 AM</td>
-                <td>10:30 AM</td>
+                <td>10:30 </td>
+                <td>17:30 </td>
                 <td>Bima</td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>Bandung - Yogyakarta</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>02:45 PM</td>
-                <td>12:15 PM</td>
-                <td>Gajayana</td>
+                <td>06:30</td>
+                <td>12:30</td>
+                <td>Argo Wilis</td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Surabaya - Malang</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>05:30 PM</td>
-                <td>03:00 PM</td>
-                <td>Sri Tanjung</td>
+                <td>07:00 </td>
+                <td>14:00 </td>
+                <td>Taksaka</td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>Jakarta - Semarang</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>12:15 PM</td>
-                <td>10:00 AM</td>
-                <td>Argo Muria</td>
+                <td>14:00 </td>
+                <td>21:00 </td>
+                <td>Gajayana</td>
             </tr>
             <tr>
                 <td>5</td>
                 <td>Yogyakarta - Solo</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>03:30 PM</td>
-                <td>01:00 PM</td>
+                <td>08:00 </td>
+                <td>15:00 </td>
                 <td>Taksaka</td>
             </tr>
             <tr>
                 <td>6</td>
                 <td>Surabaya - Jakarta</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>09:45 PM</td>
-                <td>07:15 PM</td>
-                <td>Mutiara Selatan</td>
+                <td>15:00  </td>
+                <td>23:30  </td>
+                <td>Argo Bromo Anggrek</td>
             </tr>
             <tr>
                 <td>7</td>
                 <td>Bandung - Jakarta</td>
                 <td>Ekonomi - Bisnis - Eksekutiff</td>
-                <td>06:00 AM</td>
-                <td>03:30 AM</td>
-                <td>Argo Parahyangan</td>
+                <td>08:30 </td>
+                <td>11:30 </td>
+                <td>Argo Lawu</td>
             </tr>
             <tr>
                 <td>8</td>
                 <td>Yogyakarta - Malang</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>04:15 PM</td>
-                <td>01:45 PM</td>
-                <td>Lodaya</td>
+                <td>09:45 </td>
+                <td>16:30 </td>
+                <td>Malabar</td>
             </tr>
             <tr>
                 <td>9</td>
                 <td>Semarang - Solo</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>07:30 PM</td>
-                <td>05:00 PM</td>
-                <td>Tawang Jaya</td>
+                <td>10:30 </td>
+                <td>12:30 </td>
+                <td>Bima</td>
             </tr>
             <tr>
                 <td>10</td>
                 <td>Semarang - Bandung</td>
                 <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>07:30 PM</td>
-                <td>05:00 PM</td>
-                <td>Tawang Jaya</td>
+                <td>12:15 </td>
+                <td>19:00 </td>
+                <td>Turangga</td>
             </tr>
         </tbody>
     </table>

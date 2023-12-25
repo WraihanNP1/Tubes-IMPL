@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             case "Bima":
                 $hargaPerTiket += 450000;
                 $jamDatang = '10:30';
-                $jamTiba = '17:30';
+                $jamTiba = '12:30';
                 break;
             case "Turangga":
                 $hargaPerTiket += 350000;
@@ -98,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
             case "Argo Lawu":
                 $hargaPerTiket += 600000;
-                $jamDatang = '16:45';
-                $jamTiba = '23:30';
+                $jamDatang = '08:30';
+                $jamTiba = '11:30';
                 break;
         }
         $total_harga = $hargaPerTiket * $jumlah_tiket;
