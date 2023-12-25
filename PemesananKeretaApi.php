@@ -194,16 +194,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="date" name="tanggal_keberangkatan" required>
 
         <label for="jam_keberangkatan">Jam Keberangkatan:</label>
-        <input type="time" name="jam_keberangkatan" id="jam_keberangkatan" required>
+        <input type="time" name="jam_keberangkatan" id="jam_keberangkatan" readonly required>
 
         <label for="jam_kedatangan">Jam Kedatangan:</label>
-        <input type="time" name="jam_kedatangan" id="jam_kedatangan" required>
+        <input type="time" name="jam_kedatangan" id="jam_kedatangan" readonly required>
 
         <label for="jumlah_tiket">Jumlah Tiket:</label>
         <input type="number" id="jumlah_tiket" name="jumlah_tiket" min="1" required>
 
         <label for="total_harga">Total Harga:</label>
-        <input type="number" id="total_harga" name="total_harga" min="1" readonly>
+        <input type="number" id="total_harga" name="total_harga" min="1" readonly required>
 
         <input type="submit" name="submit" value="Pesan Tiket">
         <input type="reset" value="Reset">

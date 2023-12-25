@@ -42,23 +42,23 @@ button {
 input[type="submit"],
 input[type="reset"],
 button[type="button"] {
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
 }
 
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 button[type="button"]:hover {
-    background-color: #45a049;
+    background-color: #333;
 }
 
 input[type="button"] {
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
 }
 
 input[type="button"]:hover {
-    background-color: #45a049;
+    background-color: #333;
 }
 
 footer {
@@ -68,7 +68,7 @@ footer {
 }
 
 header {
-    background-color: blue;
+    background-color: #333; 
     padding: 10px 0;
 }
 
