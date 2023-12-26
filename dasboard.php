@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if( !isset($_SESSION["login"]) ) {
+    header("location: login.php");
+    exit;
+}
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,27 +34,28 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Jadwal.html">
+                    <a href="jadwalkereta.php">
                         <i class="fa-solid fa-calendar-days"></i>
                         <span>Jadwal Kereta</span>
                     </a>
                 </li>
                 <li>
-                    <a href="PemesananKeretaApi.html">
+                    <a href="PemesananKeretaApi.php">
                         <i class="fa-solid fa-ticket"></i>
                         <span>Pesan Tiket</span>
                     </a>
                 </li>
+                </li>
                 <li>
-                    <a href="#">
+                    <a href="about.php">
                         <i class="fa-solid fa-list-check"></i>
                         <span>About</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="login.php">
                         <i class="fa-solid fa-users"></i>
-                        <span>Users</span>
+                        <span>Logouts</span>
                     </a>
                 </li>
             </ul>
@@ -63,41 +75,12 @@
                     <section class="jumbotron text-center">
                         <img src="logo.jpg" width="200" class="rounded-circle img-thumbnail">
                         <h1 class="text-center text-warning">Kereta Api Explore</h1>
-                        <p class="text-center text-white">Platform pemesanan tiket online kereta api “E-Tiket Kereta Api
-                            Explore”.</p>
-                        <p class="text-center text-white">Reservasi Mudah, Tanpa Berebut.</p>
-                        <a class="nav-link" href="PemesananKeretaApi.html"><button type="button"
+                        <p class="text-center text-white">Platform pemesanan tiket online kereta api</p>
+                        <p class="text-center text-white">“E-Tiket Kereta Api Explore”</p>
+                        <a class="nav-link" href="PemesananKeretaApi.php"><button type="button"
                                 class="btn btn-warning">Pesan
                                 Sekarang!</button></a>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                            <path fill="#fff" fill-opacity="1"
-                                d="M0,96L48,128C96,160,192,224,288,245.3C384,267,480,245,576,208C672,171,768,117,864,122.7C960,128,1056,192,1152,229.3C1248,267,1344,277,1392,282.7L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-                            </path>
-                        </svg>
-                    </section>
 
-                    
-                    <!-- about -->
-                    <section id="about">
-                        <div class="container">
-                            <div class="row text-center">
-                                <h2>About</h2>
-                                <p>Kereta Api Explore merupakan salah satu fasilitas Pemesanan tiket online Kereta Api.
-                                    Selain mudah digunakan, Kereta ApiExplore juga tentu saja terjamin keaslianya.
-                                    Jadi tunggu apalagi...yuk pesen tiket sekarang!!!!!!!
-                                </p>
-                            </div>
-                    </section>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                        <path fill="#273036" fill-opacity="1"
-                            d="M0,32L80,64C160,96,320,160,480,160C640,160,800,96,960,74.7C1120,53,1280,75,1360,85.3L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z">
-                        </path>
-                    </svg>
-
-                    <!-- footer -->
-                    <footer class="bg-primary text-white text-center pb-2">
-                        <p>Created By <a href="" class="text-white fw-bold">Kelompok 2 IPL</a></p>
-                    </footer>
                 </div>
             </div>
         </section>

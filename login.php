@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require 'conection.php';
 
 if (isset($_POST["login"])) {
@@ -14,7 +14,10 @@ if (isset($_POST["login"])) {
     $row = mysqli_fetch_assoc($result);
 
     if (password_verify($password, $row["password"])) {
-      header("location: dasboard.html");
+      // set session
+      $_SESSION["login"] = true;
+
+      header("location: dasboard.php");
       exit;
     } else {
       echo "<script>

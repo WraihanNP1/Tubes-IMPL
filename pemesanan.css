@@ -1,0 +1,100 @@
+body {
+    text-align: center;
+    background-color: #f2f2f2;
+    background-image: url('');
+    background-size: cover;
+    background-position: center center center;
+}
+
+h1 {
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"],
+input[type="reset"],
+button[type="button"] {
+    background-color: #333;
+    color: white;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button[type="button"]:hover {
+    background-color: #333;
+}
+
+input[type="button"] {
+    background-color: #333;
+    color: white;
+}
+
+input[type="button"]:hover {
+    background-color: #333;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+header {
+    background-color: #333; 
+    padding: 10px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+}
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
