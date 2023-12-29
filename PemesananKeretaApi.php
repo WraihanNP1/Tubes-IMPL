@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             case "Bima":
                 $hargaPerTiket += 450000;
                 $jamDatang = '10:30';
-                $jamTiba = '12:30';
+                $jamTiba = '17:30';
                 break;
             case "Turangga":
                 $hargaPerTiket += 350000;
@@ -245,28 +245,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             switch (kereta) {
                 case "Argo Wilis":
-                    hargaPerTiket += 20000;
+                    hargaPerTiket += 200000;
                     break;
                 case "Argo Bromo Anggrek":
-                    hargaPerTiket += 30000;
+                    hargaPerTiket += 300000;
                     break;
                 case "Malabar":
-                    hargaPerTiket += 25000;
+                    hargaPerTiket += 250000;
                     break;
                 case "Taksaka":
-                    hargaPerTiket += 35000;
+                    hargaPerTiket += 350000;
                     break;
                 case "Bima":
-                    hargaPerTiket += 40000;
+                    hargaPerTiket += 400000;
                     break;
                 case "Turangga":
-                    hargaPerTiket += 45000;
+                    hargaPerTiket += 450000;
                     break;
                 case "Gajayana":
-                    hargaPerTiket += 50000;
+                    hargaPerTiket += 500000;
                     break;
                 case "Argo Lawu":
-                    hargaPerTiket += 55000;
+                    hargaPerTiket += 550000;
                     break;
             }
             var total_harga = hargaPerTiket * jumlah_tiket;
