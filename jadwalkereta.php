@@ -169,7 +169,7 @@ if (!isset($_SESSION["login"])) {
     <div class="container button-center">
         <div class="row text-center">
             <a href="dasboard.php" style="text-decoration: none; color: #333;">
-                <button style="padding: 10px 20px; font-size: 16px; background-color: #333; color: #fff; border: none; cursor: pointer;">Kembali ke Dashboard</button>
+                <button style=" display: block; margin: 0 auto; padding: 10px 20px; font-size: 16px; background-color: #333; color: #fff; border: none; cursor: pointer;">Kembali ke Dashboard</button>
             </a>
         </div>
     </div>

@@ -12,7 +12,6 @@ if (!isset($_SESSION["login"])) {
 
 <head>
     <style>
-        /* Your existing styles */
 
         body {
             font-family: 'Arial', sans-serif;
@@ -38,7 +37,7 @@ if (!isset($_SESSION["login"])) {
         }
 
         h2, p {
-            text-align: center; /* Center align the text within the container */
+            text-align: center; 
         }
 
         h2 {
@@ -48,7 +47,7 @@ if (!isset($_SESSION["login"])) {
 
         p {
             color: #555;
-            margin-bottom: 30px; /* Increased margin for more spacing between paragraphs */
+            margin-bottom: 30px; 
         }
 
         table {
@@ -89,7 +88,7 @@ if (!isset($_SESSION["login"])) {
             <div class="container button-center">
             <div class="row text-center">
             <a href="dasboard.php" style="text-decoration: none; color: #333;">
-                <button style="padding: 10px 20px; font-size: 16px; background-color: #333; color: #fff; border: none; cursor: pointer;">Kembali ke Dashboard</button>
+                <button style="display: block; margin: 0 auto; padding: 10px 20px; font-size: 16px; background-color: #333; color: #fff; border: none; cursor: pointer;">Kembali ke Dashboard</button>
             </a>
             </div>
         </div>
