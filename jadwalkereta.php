@@ -5,13 +5,17 @@ if (!isset($_SESSION["login"])) {
     header("location: login.php");
     exit;
 }
+
+include "conection.php"; // Pastikan file connection.php di-include dengan benar
+
+// ...
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 
 <head>
-    <style>
+<style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
@@ -62,116 +66,72 @@ if (!isset($_SESSION["login"])) {
             background-color: #f2f2f2;
         }
     </style>
+    <!-- Style dan tag head lainnya -->
 </head>
 
+
 <body>
-    <section id="jadwal">
+<section id="jadwal">
         <div class="container">
             <div class="row text-center">
                 <h2>Jadwal dan Rute Perjalanan</h2>
             </div>
         </div>
     </section>
+    <section id="jadwal">
+        <!-- Konten -->
+    </section>
 
     <table class="table table-dark table-sm table table-bordered border-light">
         <thead>
+            <!-- Header tabel -->
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Rute Perjalanan</th>
-                <th scope="col">Kelas Kereta</th>
+                <th scope="col">Nama</th>
                 <th scope="col">Keberangkatan</th>
-                <th scope="col">Tiba</th>
+                <th scope="col">Stasiun Tujuan</th>
+                <th scope="col">Kelas</th>
                 <th scope="col">Kereta</th>
+                <th scope="col">Tanggal Keberangkatan</th>
+                <th scope="col">Jam Keberangkatan</th>
+                <th scope="col">Jam Kedatangan</th>
+                <th scope="col">Jumlah Ticket</th>
+                <th scope="col">Total Harga</th>
             </tr>
         </thead>
+        <div class="container button-center">
+        <div class="row text-center">
+            <a href="dasboard.php" style="text-decoration: none; color: #333;">
+                <button style=" display: block; margin: 0 auto; padding: 10px 20px; font-size: 16px; background-color: #333; color: #fff; border: none; cursor: pointer;">Kembali ke Dashboard</button>
+            </a>
+        </div>
+    </div>
         <tbody>
-        <td>1</td>
-                <td>Jakarta - Surabaya</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>10:30 </td>
-                <td>17:30 </td>
-                <td>Bima</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Bandung - Yogyakarta</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>06:30</td>
-                <td>12:30</td>
-                <td>Argo Wilis</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Surabaya - Malang</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>07:00 </td>
-                <td>14:00 </td>
-                <td>Taksaka</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Jakarta - Semarang</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>14:00 </td>
-                <td>21:00 </td>
-                <td>Gajayana</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Yogyakarta - Solo</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>08:00 </td>
-                <td>15:00 </td>
-                <td>Taksaka</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Surabaya - Jakarta</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>15:00  </td>
-                <td>23:30  </td>
-                <td>Argo Bromo Anggrek</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Bandung - Jakarta</td>
-                <td>Ekonomi - Bisnis - Eksekutiff</td>
-                <td>08:30 </td>
-                <td>11:30 </td>
-                <td>Argo Lawu</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Yogyakarta - Malang</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>09:45 </td>
-                <td>16:30 </td>
-                <td>Malabar</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Semarang - Solo</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>10:30 </td>
-                <td>12:30 </td>
-                <td>Bima</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Semarang - Bandung</td>
-                <td>Ekonomi - Bisnis - Eksekutif</td>
-                <td>12:15 </td>
-                <td>19:00 </td>
-                <td>Turangga</td>
-            </tr>
+            <?php
+            $id = 1;
+            $data = mysqli_query($conn, "SELECT * FROM pesankereta"); // Ubah variabel $koneksi menjadi $conn
+            while ($hasil = mysqli_fetch_assoc($data)) { // Menggunakan mysqli_fetch_assoc untuk mendapatkan array asosiatif
+            ?>
+                <tr>
+                    <td><?php echo $id++; ?></td>
+                    <td><?php echo $hasil['nama']; ?></td>
+                    <td><?php echo $hasil['stasiun_keberangkatan']; ?></td>
+                    <td><?php echo $hasil['stasiun_tujuan']; ?></td>
+                    <td><?php echo $hasil['kelas']; ?></td>
+                    <td><?php echo $hasil['kereta']; ?></td>
+                    <td><?php echo $hasil['tanggal_keberangkatan']; ?></td>
+                    <td><?php echo $hasil['jam_keberangkatan']; ?></td>
+                    <td><?php echo $hasil['jam_kedatangan']; ?></td>
+                    <td><?php echo $hasil['jumlah_tiket']; ?></td>
+                    <td><?php echo $hasil['total_harga']; ?></td>
+                </tr>
+            <?php
+            }
+            ?>
         </tbody>
     </table>
     <div class="container button-center">
-        <div class="row text-center">
-            <a href="dasboard.php" style="text-decoration: none; color: #333;">
-                <button style="padding: 10px 20px; font-size: 16px; background-color: #333; color: #fff; border: none; cursor: pointer;">Kembali ke Dashboard</button>
-            </a>
-        </div>
+        <!-- Tombol Kembali ke Dashboard -->
     </div>
 </body>
 
