@@ -233,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             switch (kelas) {
                 case "Ekonomi":
-                    hargaPerTiket += 50000;
+                    hargaPerTiket += 60000;
                     break;
                 case "Bisnis":
                     hargaPerTiket += 100000;
