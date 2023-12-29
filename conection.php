@@ -1,4 +1,5 @@
 <?php
+
 $conn = mysqli_connect("localhost", "root", "", "tiketkereta");
 
 function query($query)
@@ -53,6 +54,4 @@ function daftar($data)
     mysqli_query($conn, "INSERT INTO user VALUES('', '$email', '$password')");
 
     return mysqli_affected_rows($conn);
-    
 }
-

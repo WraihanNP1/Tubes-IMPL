@@ -27,8 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors[] = "Nama tidak boleh kosong.";
     }
 
-    if (empty($stasiun_keberangkatan) || empty($stasiun_tujuan)) {
-        $errors[] = "Stasiun keberangkatan dan tujuan tidak boleh kosong.";
+    if ($stasiun_keberangkatan == $stasiun_tujuan) {
+        $errors[] = "Stasiun keberangkatan dan tujuan tidak boleh sama.";
     }
 
     if (!strtotime($tanggal_keberangkatan)) {
@@ -44,9 +44,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($errors)) {
-        $hargaPerTiket = 0;
-        $jamDatang = '';
-        $jamTiba = '';
+        $checkQuery = "SELECT * FROM pesankereta WHERE nama = '$nama' AND stasiun_keberangkatan = '$stasiun_keberangkatan' AND stasiun_tujuan = '$stasiun_tujuan' AND tanggal_keberangkatan = '$tanggal_keberangkatan' AND jam_keberangkatan = '$jam_keberangkatan'";
+        $checkResult = mysqli_query($conn, $checkQuery);
+
+        if (mysqli_num_rows($checkResult) > 0) {
+            $errors[] = "Data pemesanan dengan informasi yang sama sudah ada.";
+        } else {
+            $hargaPerTiket = 0;
+            $jamDatang = '';
+            $jamTiba = '';
 
         switch ($kelas) {
             case "Ekonomi":
@@ -56,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $hargaPerTiket += 150000;
                 break;
             case "Eksekutif":
-                $hargaPerTiket += 300000;
+                $hargaPerTiket += 350000;
                 break;
         }
 
@@ -104,13 +110,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $total_harga = $hargaPerTiket * $jumlah_tiket;
 
-        $insertQuery = "INSERT INTO pesankereta (id, nama, stasiun_keberangkatan, stasiun_tujuan, kelas, kereta, tanggal_keberangkatan, jam_keberangkatan, jam_kedatangan, jumlah_tiket, total_harga) VALUES ('id', '$nama', '$stasiun_keberangkatan', '$stasiun_tujuan', '$kelas', '$kereta', '$tanggal_keberangkatan', '$jam_keberangkatan', '$jamTiba', '$jumlah_tiket', '$total_harga')";
-        $result = mysqli_query($conn, $insertQuery);
+            $insertQuery = "INSERT INTO pesankereta (id, nama, stasiun_keberangkatan, stasiun_tujuan, kelas, kereta, tanggal_keberangkatan, jam_keberangkatan, jam_kedatangan, jumlah_tiket, total_harga) VALUES ('$id', '$nama', '$stasiun_keberangkatan', '$stasiun_tujuan', '$kelas', '$kereta', '$tanggal_keberangkatan', '$jam_keberangkatan', '$jamTiba', '$jumlah_tiket', '$total_harga')";
+            $result = mysqli_query($conn, $insertQuery);
 
-        if ($result) {
-            echo "";
-        } else {
-            echo "" . mysqli_error($conn);
+            if ($result) {
+                echo "";
+            } else {
+                echo "" . mysqli_error($conn);
+            }
         }
     } else {
         foreach ($errors as $error) {
@@ -119,6 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -191,7 +199,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </select>
 
         <label for="tanggal_keberangkatan">Tanggal Keberangkatan:</label>
-        <input type="date" name="tanggal_keberangkatan" required>
+        <input type="date" name="tanggal_keberangkatan" id="tanggal_keberangkatan" min="<?php echo date('Y-m-d'); ?>" required>
+
 
         <label for="jam_keberangkatan">Jam Keberangkatan:</label>
         <input type="time" name="jam_keberangkatan" id="jam_keberangkatan" readonly required>
@@ -224,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             switch (kelas) {
                 case "Ekonomi":
-                    hargaPerTiket += 50000;
+                    hargaPerTiket += 60000;
                     break;
                 case "Bisnis":
                     hargaPerTiket += 100000;
@@ -308,6 +317,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             document.getElementById("jam_keberangkatan").value = jamKeberangkatan;
             document.getElementById("jam_kedatangan").value = jamTiba;
 
+           document.getElementById("form").addEventListener("submit", function (event) {
+    var stasiunKeberangkatan = document.getElementById("stasiun_keberangkatan").value;
+    var stasiunTujuan = document.getElementById("stasiun_tujuan").value;
+
+    if (stasiunKeberangkatan === stasiunTujuan) {
+        alert("Stasiun keberangkatan dan tujuan tidak boleh sama.");
+        event.preventDefault(); 
+    }
+});
         }
     </script>
 </body>
