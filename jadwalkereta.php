@@ -87,7 +87,7 @@ include "conection.php"; // Pastikan file connection.php di-include dengan benar
             <!-- Header tabel -->
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Nama</th>
+                
                 <th scope="col">Keberangkatan</th>
                 <th scope="col">Stasiun Tujuan</th>
                 <th scope="col">Kelas</th>
@@ -95,8 +95,6 @@ include "conection.php"; // Pastikan file connection.php di-include dengan benar
                 <th scope="col">Tanggal Keberangkatan</th>
                 <th scope="col">Jam Keberangkatan</th>
                 <th scope="col">Jam Kedatangan</th>
-                <th scope="col">Jumlah Ticket</th>
-                <th scope="col">Total Harga</th>
             </tr>
         </thead>
         <div class="container button-center">
@@ -114,7 +112,6 @@ include "conection.php"; // Pastikan file connection.php di-include dengan benar
             ?>
                 <tr>
                     <td><?php echo $id++; ?></td>
-                    <td><?php echo $hasil['nama']; ?></td>
                     <td><?php echo $hasil['stasiun_keberangkatan']; ?></td>
                     <td><?php echo $hasil['stasiun_tujuan']; ?></td>
                     <td><?php echo $hasil['kelas']; ?></td>
@@ -122,8 +119,6 @@ include "conection.php"; // Pastikan file connection.php di-include dengan benar
                     <td><?php echo $hasil['tanggal_keberangkatan']; ?></td>
                     <td><?php echo $hasil['jam_keberangkatan']; ?></td>
                     <td><?php echo $hasil['jam_kedatangan']; ?></td>
-                    <td><?php echo $hasil['jumlah_tiket']; ?></td>
-                    <td><?php echo $hasil['total_harga']; ?></td>
                 </tr>
             <?php
             }
