@@ -148,6 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h1>Pemesanan Tiket Kereta Api</h1>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+    <form action="payment.php" method="post">
 
         <label for="id">Id:</label>
         <input type="number" name="id" required>
@@ -214,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="total_harga">Total Harga:</label>
         <input type="number" id="total_harga" name="total_harga" min="1" readonly required>
 
-        <input type="submit" name="submit" value="Pesan Tiket">
+        <input type="submit" name="submit" value="Pesan Tiket" formaction="payment.php">
         <input type="reset" value="Reset">
         <input type="button" onclick="window.location.href='dasboard.php'" value="Menu Utama">
     </form>
